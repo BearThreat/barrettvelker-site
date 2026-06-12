@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4efe4">
+    <title>Rebuild the Monasteries - Charlotte Narration</title>
+    <link rel="icon" href="data:,">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="player-band" aria-label="Audio player">
+        <div class="title-block">
+          <p class="kicker">Mary Harrington</p>
+          <h1>Rebuild the Monasteries</h1>
+          <p class="subhead">Charlotte narration queue</p>
+        </div>
+
+        <div class="now">
+          <div>
+            <p class="label">Now Playing</p>
+            <h2 id="trackTitle">Part 1</h2>
+          </div>
+          <p id="timeReadout" class="time">0:00 / 0:00</p>
+        </div>
+
+        <audio id="audio" preload="auto" controls></audio>
+
+        <div class="control-grid">
+          <button id="prevBtn" type="button">Prev</button>
+          <button id="playBtn" type="button" class="primary">Play</button>
+          <button id="nextBtn" type="button">Next</button>
+          <label class="speed-control">
+            <span>Speed</span>
+            <select id="speedSelect">
+              <option value="0.85">0.85x</option>
+              <option value="1">1x</option>
+              <option value="1.1">1.1x</option>
+              <option value="1.25">1.25x</option>
+              <option value="1.5">1.5x</option>
+              <option value="1.75">1.75x</option>
+              <option value="2">2x</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="queue-head">
+          <h2>Parts</h2>
+        </div>
+        <div id="queue" class="queue"></div>
+
+        <div class="download-row">
+          <button id="downloadAllBtn" type="button">Download all audio</button>
+        </div>
+
+        <p id="offlineStatus" class="status" role="status">Checking offline cache...</p>
+      </section>
+
+      <section class="text-band" aria-label="Text">
+        <div class="section-head">
+          <h2 id="textTitle">Text</h2>
+        </div>
+        <article id="textView" class="text-view"></article>
+      </section>
+    </main>
+
+    <div id="downloadSheet" class="sheet" hidden>
+      <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="downloadSheetTitle">
+        <h2 id="downloadSheetTitle">Download all audio</h2>
+        <button id="saveBrowserBtn" type="button" class="primary">Save to browser</button>
+        <a id="saveDeviceLink" class="button-link" href="audio/mary-harrington-charlotte-audio.zip" download="mary-harrington-charlotte-audio.zip">Save to device</a>
+        <button id="closeSheetBtn" type="button" class="quiet">Close</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
