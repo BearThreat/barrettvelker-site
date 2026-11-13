@@ -14,6 +14,20 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+  // Pages: network first so updated HTML (and its CSP) replaces old offline copies;
+  // the cached copy is the offline fallback. Audio and other assets stay cache first.
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request).then(async (response) => {
+        const cache = await caches.open(CACHE_NAME);
+        if (response.ok && (await cache.match(event.request))) {
+          await cache.put(event.request, response.clone());
+        }
+        return response;
+      }).catch(() => caches.match(event.request).then((cached) => cached || Response.error()))
+    );
+    return;
+  }
   event.respondWith(
     caches.match(event.request).then(async (cached) => {
       const range = event.request.headers.get("range");
